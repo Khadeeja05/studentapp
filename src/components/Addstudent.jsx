@@ -2,10 +2,15 @@ import React,{useState} from 'react'
 import {Button,TextField,Typography,data} from '@mui/material'
 import axios from 'axios';
 
-const Addstudent = () => {
+const Addstudent = (props) => {
   
     
-    var[data,setData]=useState();
+    var[data,setData]=useState({
+    name:props.data.name,
+    age:props.data.age,
+    department:props.data.department
+    });
+
     const inputHandler=(e)=>{
         setData({...data,[e.target.name]:e.target.value})
         console.log(data);
@@ -29,11 +34,11 @@ const Addstudent = () => {
         <br /><br />
         <Typography variant='h4'>Student Details</Typography>
         <br />
-        <TextField variant="outlined" name="name" onChange={inputHandler} label="name"/>
+        <TextField variant="outlined" name="name" value={data.name} onChange={inputHandler} label="name"/>
         <br /><br />
-        <TextField variant="outlined" name="age" onChange={inputHandler} label="age"/>
+        <TextField variant="outlined" name="age" value={data.age} onChange={inputHandler} label="age"/>
         <br /><br />
-        <TextField variant="outlined" name="department" onChange={inputHandler} label="department"/>
+        <TextField variant="outlined" name="department" value={data.department} onChange={inputHandler} label="department"/>
         <br /><br />
         <Button variant="outlined" onClick={submit}>Submit</Button>
     </div>
